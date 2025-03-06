@@ -1,5 +1,5 @@
 use alloy::sol_types::SolCall;
-use revm::primitives::{Account, Address, ExecutionResult, ResultAndState, Output};
+use revm::primitives::{Account, Address, ExecutionResult, Output, ResultAndState};
 
 #[derive(Debug)]
 pub struct CallOutput<S: SolCall> {
@@ -15,8 +15,7 @@ pub fn process_transact_result<S: SolCall>(result_and_state: ResultAndState) -> 
         changes: state,
         output: None,
     };
-    if let :ExecutionResult::Success { output, .. } = &call_output.execution_result
-    {
+    if let ExecutionResult::Success { output, .. } = &call_output.execution_result {
         if let Output::Call(data) = output {
             if let Ok(decoded) = S::abi_decode_returns(&data, true) {
                 call_output.output = Some(decoded);
