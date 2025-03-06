@@ -1,0 +1,23 @@
+[package]
+name = "revm-contract-types"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+alloy = { version = "0.5.4", features = [
+    "full",
+    "node-bindings",
+    "rpc-types-debug",
+    "rpc-types-trace",
+    "json-rpc",
+    "rpc-client",
+    "signer-aws",
+    "signer-keystore",
+    "signer-ledger",
+    "signer-mnemonic",
+    "signer-trezor",
+    "signer-yubihsm",
+    "rlp",
+    "transports",
+] }
+revm = { version = "18.0.0", features = ["alloydb"] }
